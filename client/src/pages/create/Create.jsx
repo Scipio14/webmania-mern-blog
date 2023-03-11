@@ -68,7 +68,7 @@ const Create = () => {
 
       const data = await request("/blog", "POST", options, body);
       console.log(data);
-      // navigate(`/blogDetails/${data._id}`);
+      navigate(`/blogDetails/${data._id}`);
     } catch (error) {
       console.error(error);
     }

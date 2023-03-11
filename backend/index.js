@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
 const connectDB = require('./config/dbConn');
 const  mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
@@ -20,6 +21,24 @@ app.use(express.urlencoded({extended:true}))
 //routes
 app.use('/auth',authRoutes)
 app.use('/blog',blogRoutes);
+
+//multer
+const storage = multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'public/images')
+  },
+  filename:function(req,file,cb){
+    cb(null,req.body.filename)
+  }
+})
+
+const upload = multer({
+  storage:storage
+})
+
+app.post('/upload',upload.single("image"),async(req,res)=>{
+ return res.status(200).json({msg:"Successfully uploaded"})
+})
 
 mongoose.connection.once('open',()=>{
   console.log('Connected to MongoDB');
