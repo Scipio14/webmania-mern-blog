@@ -1,11 +1,20 @@
 import classes from "./home.module.css";
-import { Navbar,FeaturedBlogs } from "../../components";
+import {
+  Navbar,
+  FeaturedBlogs,
+  Categories,
+  Newsletter,
+  Footer,
+} from "../../components";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <FeaturedBlogs/>
+      <FeaturedBlogs />
+      <Categories />
+      <Newsletter />
+      <Footer />
     </div>
   );
 };

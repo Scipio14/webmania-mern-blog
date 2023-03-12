@@ -14,6 +14,7 @@ mongoose.set('strictQuery',false)
 connectDB();
 
 //setting up the server
+app.use('/images', express.static('public/images'))
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
